@@ -16,11 +16,15 @@ const cursor = "c"
 const tile = "t"
 const wallw = 'w'
 const wallb = 'b'
+const wallb = 'a'
 const goal = "g"
+
+let player = knight
 
 
 setLegend(
   [ rook, bitmap`
+  [rook, bitmap`
 ................
 .001..LLL1..LL1.
 .011..LL11..L11.
@@ -38,6 +42,8 @@ setLegend(
 .0LLLLLLLLLLLLL.
 ................` ],
   [ bishop, bitmap`
+................`],
+  [bishop, bitmap`
 ................
 .......01.......
 ......0LL1......
@@ -55,6 +61,8 @@ setLegend(
 ....00LLLLL1....
 ................` ],
   [ queen, bitmap`
+................`],
+  [queen, bitmap`
 ................
 ................
 ..01...01...01..
@@ -72,6 +80,8 @@ setLegend(
 ....00LLLLL1....
 ................` ],
   [ knight, bitmap`
+................`],
+  [knight, bitmap`
 ................
 ....0...L.......
 ....0LLLLL......
@@ -89,6 +99,8 @@ setLegend(
 ..00LLLLLLLLLL..
 ................` ],
   [ cursor, bitmap`
+................`],
+  [cursor, bitmap`
 33333......33333
 33............33
 3..............3
@@ -106,6 +118,8 @@ setLegend(
 33............33
 33333......33333` ],
   [ tile, bitmap`
+33333......33333`],
+  [tile, bitmap`
 7777777777777777
 7777777777777777
 7777777777777777
@@ -123,6 +137,8 @@ setLegend(
 7777777777777777
 7777777777777777` ],
   [ wallw, bitmap`
+7777777777777777`],
+  [wallw, bitmap`
 2200000000000022
 2000000000000002
 0000000000000000
@@ -140,6 +156,8 @@ setLegend(
 2000000000000002
 2200000000000022` ],
   [ wallb, bitmap`
+2200000000000022`],
+  [wallb, bitmap`
 7700000000000077
 7000000000000007
 0000000000000000
@@ -157,6 +175,8 @@ setLegend(
 7000000000000007
 7700000000000077` ],
   [ goal, bitmap`
+7700000000000077`],
+  [goal, bitmap`
 HH888HHH888HHH88
 H888HHH888HHH888
 888HHH888HHH888H
@@ -175,6 +195,9 @@ H888HHH888HHH888
 88HHH888HHH888HH` ],
   
   
+88HHH888HHH888HH`],
+
+
 )
 
 setSolids([wallw, wallb])
@@ -190,8 +213,10 @@ t.t.g.
 .twt.t`,
   map`
 bt.t.
+nt.t.
 tct.t
 wtwt.
+wawt.
 t.t.t
 .tgt.`,
   map`
@@ -204,6 +229,7 @@ setMap(levels[level])
 
 //setPushables({
   //[]: []
+//[]: []
 //})
 
 onInput("s", () => {
@@ -226,6 +252,9 @@ onInput("j", () => {
   getFirst(knight).x = getFirst(cursor).x
   getFirst(knight).y = getFirst(cursor).y
   
+onInput("j", () => {
+  getFirst(player).x = getFirst(cursor).x
+  getFirst(player).y = getFirst(cursor).y
 })
 
 
@@ -234,5 +263,13 @@ afterInput(() => {
     let level = 1
     setMap(levels[level])
 }
+  if (tilesWith(player, goal).length >= 1) {
+    level += 1
+    setMap (levels[level])
+  }
 })
 
+    //if (level = 10){
+      //addText("Congratulations!", { x: 5,y: 4, color: color`8`})
+      //addText("You have finished the Game!", { x: 5,y: 0, color: color`5`})
+    //}
