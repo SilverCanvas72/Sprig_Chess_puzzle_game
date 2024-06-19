@@ -187,6 +187,17 @@ tctwt.
 .t.t.t
 t.t.g.
 .twt.t`
+.twt.t`,
+  map`
+bt.t.
+tct.t
+wtwt.
+t.t.t
+.tgt.`,
+  map`
+ntct
+tgt.
+.t.t`,
 ]
 
 setMap(levels[level])
@@ -219,7 +230,9 @@ onInput("j", () => {
 
 
 afterInput(() => {
-    if(tilesWith(knight, goal).length >= 1){
-    addText ("You Won", {x:7 ,y:7, color:color`5` })
-  }
+    if(tilesWith(knight, goal).length >= 1 && level == 0){
+    let level = 1
+    setMap(levels[level])
+}
 })
+
