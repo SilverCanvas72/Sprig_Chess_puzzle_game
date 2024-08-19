@@ -7,6 +7,7 @@ Move the knight to the aim or goal square without hitting the black blocks.
 
 ### Controls:
 Move cursor with WASD, Press J to move the peice.
+
 ![image](https://github.com/user-attachments/assets/fe91d3fb-ffd4-4972-8359-db0568984fdd)
 
 ## Click to See Walkthrough Video:
